@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="cge_margin_forecast_tree" model="ir.ui.view">
+        <field name="name">cge.margin.forecast.tree</field>
+        <field name="model">cge.margin.forecast</field>
+        <field name="arch" type="xml">
+            <tree string="Margin Forecasts" decoration-success="trend=='improving'"
+                  decoration-danger="trend=='declining'">
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="contract_value" sum="Total Contract Value"/>
+                <field name="forecast_cost_at_completion" sum="Forecast CAC"/>
+                <field name="forecast_margin"/>
+                <field name="completion_pct"/>
+                <field name="ai_confidence"/>
+                <field name="trend"/>
+                <field name="last_updated"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="cge_margin_forecast_form" model="ir.ui.view">
+        <field name="name">cge.margin.forecast.form</field>
+        <field name="model">cge.margin.forecast</field>
+        <field name="arch" type="xml">
+            <form string="Margin Forecast">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="project_id"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="last_updated"/>
+                            <field name="trend"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Cost Details" name="cost_details">
+                            <group>
+                                <group>
+                                    <field name="contract_value"/>
+                                    <field name="budget"/>
+                                    <field name="committed_cost"/>
+                                </group>
+                                <group>
+                                    <field name="incurred_cost"/>
+                                    <field name="completion_pct"/>
+                                    <field name="forecast_cost_at_completion"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="AI Forecast" name="ai_forecast">
+                            <group>
+                                <field name="forecast_margin"/>
+                                <field name="ai_confidence"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="cge_margin_forecast_action" model="ir.actions.act_window">
+        <field name="name">Margin Forecasts</field>
+        <field name="res_model">cge.margin.forecast</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new margin forecast
+            </p>
+        </field>
+    </record>
+</odoo>

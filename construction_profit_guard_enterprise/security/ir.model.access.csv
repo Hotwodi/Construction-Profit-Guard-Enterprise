@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cge_portfolio_dashboard_user,cge.portfolio.dashboard.user,model_cge_portfolio_dashboard,base.group_user,1,1,1,1
+access_cge_margin_forecast_user,cge.margin.forecast.user,model_cge_margin_forecast,base.group_user,1,1,1,1
+access_cge_subcontractor_portal_user,cge.subcontractor.portal.user,model_cge_subcontractor_portal,base.group_user,1,1,1,1
+access_cge_approval_rule_user,cge.approval.rule.user,model_cge_approval_rule,base.group_user,1,1,1,1
+access_cge_document_extraction_user,cge.document.extraction.user,model_cge_document_extraction,base.group_user,1,1,1,1
+access_cge_cost_code_alert_user,cge.cost.code.alert.user,model_cge_cost_code_alert,base.group_user,1,1,1,1

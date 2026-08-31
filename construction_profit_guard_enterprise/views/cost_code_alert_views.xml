@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="cge_cost_code_alert_tree" model="ir.ui.view">
+        <field name="name">cge.cost.code.alert.tree</field>
+        <field name="model">cge.cost.code.alert</field>
+        <field name="arch" type="xml">
+            <tree string="Cost Code Alerts" decoration-danger="ai_severity in ('high','critical')"
+                  decoration-warning="ai_severity=='medium'"
+                  decoration-muted="state=='resolved'">
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="cost_code_id"/>
+                <field name="alert_type"/>
+                <field name="threshold_pct"/>
+                <field name="current_pct"/>
+                <field name="ai_severity" widget="badge"/>
+                <field name="state" widget="badge"/>
+                <field name="triggered_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="cge_cost_code_alert_form" model="ir.ui.view">
+        <field name="name">cge.cost.code.alert.form</field>
+        <field name="model">cge.cost.code.alert</field>
+        <field name="arch" type="xml">
+            <form string="Cost Code Alert">
+                <header>
+                    <button name="action_acknowledge" type="object" string="Acknowledge"
+                            class="oe_highlight" invisible="state!='active'"/>
+                    <button name="action_resolve" type="object" string="Resolve"
+                            invisible="state=='resolved'"/>
+                    <button name="action_reactivate" type="object" string="Reactivate"
+                            invisible="state=='active'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="active,acknowledged,resolved"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="project_id"/>
+                            <field name="cost_code_id"/>
+                            <field name="alert_type"/>
+                        </group>
+                        <group>
+                            <field name="threshold_pct"/>
+                            <field name="current_pct"/>
+                            <field name="ai_severity"/>
+                            <field name="triggered_date"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="cge_cost_code_alert_action" model="ir.actions.act_window">
+        <field name="name">Cost Code Alerts</field>
+        <field name="res_model">cge.cost.code.alert</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new cost code alert
+            </p>
+        </field>
+    </record>
+</odoo>

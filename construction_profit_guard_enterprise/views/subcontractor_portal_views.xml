@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="cge_subcontractor_portal_tree" model="ir.ui.view">
+        <field name="name">cge.subcontractor.portal.tree</field>
+        <field name="model">cge.subcontractor.portal</field>
+        <field name="arch" type="xml">
+            <tree string="Subcontractor Portals" decoration-success="state=='active'"
+                  decoration-muted="state=='inactive'">
+                <field name="name"/>
+                <field name="vendor_id"/>
+                <field name="project_id"/>
+                <field name="access_level"/>
+                <field name="approved_work_orders"/>
+                <field name="pending_approvals"/>
+                <field name="document_count"/>
+                <field name="last_login"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="cge_subcontractor_portal_form" model="ir.ui.view">
+        <field name="name">cge.subcontractor.portal.form</field>
+        <field name="model">cge.subcontractor.portal</field>
+        <field name="arch" type="xml">
+            <form string="Subcontractor Portal">
+                <header>
+                    <button name="action_activate" type="object" string="Activate"
+                            class="oe_highlight" invisible="state=='active'"/>
+                    <button name="action_deactivate" type="object" string="Deactivate"
+                            invisible="state=='inactive'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="active,inactive"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="vendor_id"/>
+                            <field name="project_id"/>
+                        </group>
+                        <group>
+                            <field name="access_level"/>
+                            <field name="last_login"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Work Orders &amp; Approvals" name="work_orders">
+                            <group>
+                                <group>
+                                    <field name="approved_work_orders"/>
+                                    <field name="pending_approvals"/>
+                                </group>
+                                <group>
+                                    <field name="document_count"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="cge_subcontractor_portal_action" model="ir.actions.act_window">
+        <field name="name">Subcontractor Portals</field>
+        <field name="res_model">cge.subcontractor.portal</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new subcontractor portal access
+            </p>
+        </field>
+    </record>
+</odoo>

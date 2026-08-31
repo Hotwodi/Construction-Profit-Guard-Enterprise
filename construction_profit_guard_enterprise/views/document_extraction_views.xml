@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="cge_document_extraction_tree" model="ir.ui.view">
+        <field name="name">cge.document.extraction.tree</field>
+        <field name="model">cge.document.extraction</field>
+        <field name="arch" type="xml">
+            <tree string="Document Extractions" decoration-success="extraction_status=='completed'"
+                  decoration-danger="extraction_status=='failed'"
+                  decoration-warning="extraction_status=='processing'">
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="document_type"/>
+                <field name="file_name"/>
+                <field name="extraction_status" widget="badge"/>
+                <field name="ai_confidence"/>
+                <field name="reviewed"/>
+                <field name="reviewed_by"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="cge_document_extraction_form" model="ir.ui.view">
+        <field name="name">cge.document.extraction.form</field>
+        <field name="model">cge.document.extraction</field>
+        <field name="arch" type="xml">
+            <form string="Document Extraction">
+                <header>
+                    <button name="action_start_processing" type="object"
+                            string="Start Processing"
+                            invisible="extraction_status!='pending'"/>
+                    <button name="action_mark_completed" type="object"
+                            string="Mark Completed"
+                            invisible="extraction_status!='processing'"/>
+                    <button name="action_mark_failed" type="object"
+                            string="Mark Failed"
+                            invisible="extraction_status not in ('pending','processing')"/>
+                    <button name="action_mark_reviewed" type="object"
+                            string="Mark Reviewed"
+                            invisible="reviewed==True"/>
+                    <field name="extraction_status" widget="statusbar"
+                           statusbar_visible="pending,processing,completed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="project_id"/>
+                            <field name="document_type"/>
+                            <field name="file_name"/>
+                        </group>
+                        <group>
+                            <field name="ai_confidence"/>
+                            <field name="reviewed"/>
+                            <field name="reviewed_by"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Extracted Data" name="extracted_data">
+                            <field name="extracted_data" widget="json"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="cge_document_extraction_action" model="ir.actions.act_window">
+        <field name="name">Document Extractions</field>
+        <field name="res_model">cge.document.extraction</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Queue a new document for extraction
+            </p>
+        </field>
+    </record>
+</odoo>

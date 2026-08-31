@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_cge_root"
+              name="Construction Enterprise"
+              sequence="10"
+              web_icon="construction_profit_guard_enterprise,static/description/icon.png"/>
+
+    <!-- Submenus -->
+    <menuitem id="menu_cge_portfolio_dashboard"
+              name="Portfolio Dashboard"
+              parent="menu_cge_root"
+              sequence="10"
+              action="cge_portfolio_dashboard_action"/>
+
+    <menuitem id="menu_cge_margin_forecast"
+              name="Margin Forecasts"
+              parent="menu_cge_root"
+              sequence="20"
+              action="cge_margin_forecast_action"/>
+
+    <menuitem id="menu_cge_subcontractor_portal"
+              name="Subcontractor Portal"
+              parent="menu_cge_root"
+              sequence="30"
+              action="cge_subcontractor_portal_action"/>
+
+    <menuitem id="menu_cge_approval_rule"
+              name="Approval Rules"
+              parent="menu_cge_root"
+              sequence="40"
+              action="cge_approval_rule_action"/>
+
+    <menuitem id="menu_cge_document_extraction"
+              name="Document Extraction"
+              parent="menu_cge_root"
+              sequence="50"
+              action="cge_document_extraction_action"/>
+
+    <menuitem id="menu_cge_cost_code_alert"
+              name="Cost Code Alerts"
+              parent="menu_cge_root"
+              sequence="60"
+              action="cge_cost_code_alert_action"/>
+</odoo>

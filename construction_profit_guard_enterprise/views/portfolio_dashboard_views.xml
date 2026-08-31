@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="cge_portfolio_dashboard_tree" model="ir.ui.view">
+        <field name="name">cge.portfolio.dashboard.tree</field>
+        <field name="model">cge.portfolio.dashboard</field>
+        <field name="arch" type="xml">
+            <tree string="Portfolio Dashboards">
+                <field name="name"/>
+                <field name="period"/>
+                <field name="total_projects"/>
+                <field name="active_projects"/>
+                <field name="total_contract_value" sum="Total Contract Value"/>
+                <field name="total_budget" sum="Total Budget"/>
+                <field name="portfolio_margin"/>
+                <field name="ai_forecast_accuracy"/>
+                <field name="at_risk_projects"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="cge_portfolio_dashboard_form" model="ir.ui.view">
+        <field name="name">cge.portfolio.dashboard.form</field>
+        <field name="model">cge.portfolio.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Portfolio Dashboard">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="period"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="total_projects"/>
+                            <field name="active_projects"/>
+                            <field name="at_risk_projects"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Financials" name="financials">
+                            <group>
+                                <group>
+                                    <field name="total_contract_value"/>
+                                    <field name="total_budget"/>
+                                    <field name="total_committed"/>
+                                </group>
+                                <group>
+                                    <field name="total_incurred"/>
+                                    <field name="total_billed"/>
+                                    <field name="portfolio_margin"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="AI Insights" name="ai_insights">
+                            <group>
+                                <field name="ai_forecast_accuracy"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="cge_portfolio_dashboard_action" model="ir.actions.act_window">
+        <field name="name">Portfolio Dashboards</field>
+        <field name="res_model">cge.portfolio.dashboard</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new portfolio dashboard
+            </p>
+        </field>
+    </record>
+</odoo>

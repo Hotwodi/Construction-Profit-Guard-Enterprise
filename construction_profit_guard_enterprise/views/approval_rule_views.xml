@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="cge_approval_rule_tree" model="ir.ui.view">
+        <field name="name">cge.approval.rule.tree</field>
+        <field name="model">cge.approval.rule</field>
+        <field name="arch" type="xml">
+            <tree string="Approval Rules">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="rule_type"/>
+                <field name="threshold_amount"/>
+                <field name="auto_approve_below"/>
+                <field name="approver_id"/>
+                <field name="ai_risk_assessment"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="cge_approval_rule_form" model="ir.ui.view">
+        <field name="name">cge.approval.rule.form</field>
+        <field name="model">cge.approval.rule</field>
+        <field name="arch" type="xml">
+            <form string="Approval Rule">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="rule_type"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="threshold_amount"/>
+                            <field name="auto_approve_below"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Approver &amp; AI" name="approver_ai">
+                            <group>
+                                <field name="approver_id"/>
+                                <field name="ai_risk_assessment"/>
+                                <field name="active"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="cge_approval_rule_action" model="ir.actions.act_window">
+        <field name="name">Approval Rules</field>
+        <field name="res_model">cge.approval.rule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new approval rule
+            </p>
+        </field>
+    </record>
+</odoo>

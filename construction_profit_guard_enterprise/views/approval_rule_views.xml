@@ -5,7 +5,7 @@
         <field name="name">cge.approval.rule.tree</field>
         <field name="model">cge.approval.rule</field>
         <field name="arch" type="xml">
-            <tree string="Approval Rules">
+            <list string="Approval Rules">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="rule_type"/>
@@ -14,7 +14,7 @@
                 <field name="approver_id"/>
                 <field name="ai_risk_assessment"/>
                 <field name="active" widget="boolean_toggle"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -59,7 +59,7 @@
     <record id="cge_approval_rule_action" model="ir.actions.act_window">
         <field name="name">Approval Rules</field>
         <field name="res_model">cge.approval.rule</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new approval rule

@@ -5,7 +5,7 @@
         <field name="name">cge.cost.code.alert.tree</field>
         <field name="model">cge.cost.code.alert</field>
         <field name="arch" type="xml">
-            <tree string="Cost Code Alerts" decoration-danger="ai_severity in ('high','critical')"
+            <list string="Cost Code Alerts" decoration-danger="ai_severity in ('high','critical')"
                   decoration-warning="ai_severity=='medium'"
                   decoration-muted="state=='resolved'">
                 <field name="name"/>
@@ -17,7 +17,7 @@
                 <field name="ai_severity" widget="badge"/>
                 <field name="state" widget="badge"/>
                 <field name="triggered_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -65,7 +65,7 @@
     <record id="cge_cost_code_alert_action" model="ir.actions.act_window">
         <field name="name">Cost Code Alerts</field>
         <field name="res_model">cge.cost.code.alert</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new cost code alert

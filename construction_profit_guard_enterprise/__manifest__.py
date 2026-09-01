@@ -3,6 +3,7 @@
     "name": "Construction Profit Guard Enterprise: Subcontractor Portal, "
             "Forecasting & Portfolio Reporting",
     "version": "18.0.1.0.0",
+    'images': ['static/description/cover.png'],
     "summary": "Executive portfolio dashboard, AI margin forecasting, "
                "subcontractor portal, approval rules, document extraction "
                "and cost code budget alerts for construction enterprises.",
